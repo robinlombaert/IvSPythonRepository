@@ -14,9 +14,9 @@ import glob as glob_module
 
 #-- You can add directories here, but be sure that the relative paths within
 #   those directories are correct!
-data_dirs = [os.getenv('ivsdata'),'/STER/pieterd/IVSDATA/', '/STER/kristofs/IVSdata','/STER/jorisv/IVSDATA/',
-             '/STER/kenneth/Python_repository/','/home/ben/public_html/opacities','/STER/michelh/IVSDATA/',
-             '/Users/robinl/dev/ivsdata']
+data_dirs = [os.getenv('ivsdata'),'/STER/jorisv/IVSDATA/',
+             '/STER/kenneth/Python_repository/','/STER/michelh/IVSDATA/',
+             os.path.join(os.path.expanduser('~'),'ComboCode','aux','ivsdata')]
 
 ivs_dirs = dict(coralie='/STER/coralie/',
                 hermes='/STER/mercator/hermes/')
@@ -79,7 +79,6 @@ if __name__=="__main__":
     from ivs.aux import loggers
     import shutil
     logger = loggers.get_basic_logger()
-
     to_install = ['spectra/pyrotin4',
                   'timeseries/deeming','timeseries/eebls','timeseries/multih',
                   'timeseries/pyclean','timeseries/pyKEP','timeseries/pyscargle',
