@@ -10,6 +10,11 @@
     $ cd ivs
     $ git pull
 
+* For the next part of the installation, temporarily move the io folder elsewhere, e.g.
+
+    $ cd ivs
+    $ mv io io_backup
+
 * The IvS Python repository contains mostly python routines. Some of the time-critical
 functions, however, are written in fortran. To compile them you can run
 
@@ -26,7 +31,12 @@ Note: sometimes the compilation process fails. If so, try to compile spectra/pyr
     $ cd ../
     $ python config.py compile
 
-* In the config file you may also change the paths where the data catalogs (variable: data_dir) can be found, if you are not using the default locations. 
+* In the config file you may also change the paths where the IvS data catalogs (variable: data_dir) can be found, if you are not using the default locations. 
+
+* With the installation finished, move the io folder back:
+
+    $ cd ivs
+    $ mv io_backup io
 
 * Make sure that your python path points to the ivs folder, so that you can simply import
 using, for example:
@@ -40,7 +50,7 @@ using, for example:
 Warning: don't put ~/python/ivs in your Python path, but just ~/python.
 
 
-* To generate the documentation, simply run the script
+* To generate the documentation (which, as a user, you typically do not have to do), simply run the script
 
     $ python makedoc.py
 
