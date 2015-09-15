@@ -1,7 +1,7 @@
 * Clone the git repository to create a local copy in an "ivs" folder. 
   
     $ cd python/
-    $ git clone https://github.com/JorisDeRidder/IvSPythonRepository.git ivs
+    $ git clone https://github.com/robinlombaert/IvSPythonRepository.git ivs
 
   This will clone all repository files in the ~/python/ivs folder. Be aware, however, that only the python scripts and the documentation are being cloned, not the (numerous and sometimes huge) datafiles that come along with it, containing, for example, limbdarkening coefficients.
     
@@ -16,11 +16,11 @@
     $ mv io io_backup
 
 * The IvS Python repository contains mostly python routines. Some of the time-critical
-functions, however, are written in fortran. To compile them you can run
+functions, however, are written in fortran. This assumes you have gfortran installed on your system. To compile them you can run
 
     $ python config.py compile
 
-If you want to specify your own fortran compiler you can do so with
+Alternatively, if you want to specify your own fortran compiler you can do so with
 
     $ python config.py compile f77
 
