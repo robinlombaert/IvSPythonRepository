@@ -10,10 +10,23 @@
     $ cd ivs
     $ git pull
 
+* Make sure that your python path points to the ivs folder, so that you can simply import
+using, for example:
+
+    >>> from ivs.statistics import linearregression
+
+  If your python repository is in, e.g., ~/python/ivs/ , you can put in your .bash_profile:
+  
+    export PYTHONPATH=/home/YOURNAME/python:$PYTHONPATH
+
+  Warning: don't put ~/python/ivs in your Python path, but just ~/python.
+
 * For the next part of the installation, temporarily move the io folder elsewhere, e.g.
 
     $ cd ivs
     $ mv io io_backup
+
+* In the config.py file in the ivs folder, add the path where the IvS data catalogs (variable: data_dir) can be found. 
 
 * The IvS Python repository contains mostly python routines. Some of the time-critical
 functions, however, are written in fortran. This assumes you have gfortran installed on your system. To compile them you can run
@@ -31,24 +44,10 @@ Note: sometimes the compilation process fails. If so, try to compile spectra/pyr
     $ cd ../
     $ python config.py compile
 
-* In the config file you may also change the paths where the IvS data catalogs (variable: data_dir) can be found, if you are not using the default locations. 
-
 * With the installation finished, move the io folder back:
 
     $ cd ivs
     $ mv io_backup io
-
-* Make sure that your python path points to the ivs folder, so that you can simply import
-using, for example:
-
-    >>> from ivs.statistics import linearregression
-
-  If your python repository is in, e.g., ~/python/ivs/ , you can put in your .bash_profile:
-  
-    export PYTHONPATH=/home/YOURNAME/python:$PYTHONPATH
-
-Warning: don't put ~/python/ivs in your Python path, but just ~/python.
-
 
 * To generate the documentation (which, as a user, you typically do not have to do), simply run the script
 
