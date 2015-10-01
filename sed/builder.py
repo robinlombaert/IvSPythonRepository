@@ -565,7 +565,10 @@ import json
 
 import pylab as pl
 from matplotlib import mlab
-import image
+try:
+    import image
+except ImportError:
+    import Image as image
 import numpy as np
 import scipy.stats
 from scipy.interpolate import Rbf
