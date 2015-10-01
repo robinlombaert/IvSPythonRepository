@@ -719,7 +719,7 @@ def findext_marshall(ll, bb, distance=None, redlaw='cardelli1989', Rv=3.1, norm=
   @type redlaw: str
   @param Rv: Av/E(B-V) (standard: 3.1)
   @type Rv: float
-  @return: The extinction in K-band
+  @return: The extinction in V-band (or norm)
   @rtype: float
   """
   
@@ -1038,7 +1038,8 @@ def findext_drimmel(lng, lat, distance=None, rescaling=True,
   else:
     out = (absdisk + abspir + avloc).flatten()
   
-  #-- Marshall is standard in Ak, but you can change this:
+  #-- Drimmel is standard in Av, but you can change this:
+  #   In case of norm=Av, the conversion factor is just 1.
   redwave, redflux = get_law(redlaw,Rv=Rv,norm=norm,photbands=['JOHNSON.V'])
   
   return(out/redflux[0])

@@ -184,7 +184,7 @@ def get_law(name,norm='E(B-V)',wave_units='AA',photbands=None,**kwargs):
     
     
     #-- set the units of the wavelengths
-    if wave_units != 'AA' and photbands is not None:
+    if wave_units != 'AA':
         wave = conversions.convert('AA',wave_units,wave)
     
     return wave,mag
@@ -263,7 +263,8 @@ def chiar2006(Rv=3.1,curve='ism',**kwargs):
     """
     Extinction curve at infrared wavelengths from Chiar and Tielens (2006)
     
-    We return A(lambda)/E(B-V), by multiplying A(lambda)/Av with Rv.
+    We return A(lambda)/Av, by multiplying A(lambda)/Ak Ak/Av=0.09 (see Chiar 
+    and Tielens (2006).
     
     This is only defined for Rv=3.1. If it is different, this will raise an
     AssertionError
@@ -296,6 +297,49 @@ def chiar2006(Rv=3.1,curve='ism',**kwargs):
     #plot(1/wavelengths,alam_aV,'o-')
     return wavelengths*1e4,alam_aV
 
+
+@memoized
+def fitz2004chiar2006(Rv=3.1,curve='ism',**kwargs):
+    """
+    Combined and extrapolated extinction curve Fitzpatrick 2004 and 
+    from Chiar and Tielens (2006).
+    
+    We return A(lambda)/E(B-V), by multiplying A(lambda)/Av with Rv.
+    
+    This is only defined for Rv=3.1. If it is different, this will raise an
+    AssertionError
+    
+    Extra kwags are to catch unwanted keyword arguments.
+    
+    @param Rv: Rv
+    @type Rv: float
+    @param curve: extinction curve
+    @type curve: string (one of 'gc' or 'ism', galactic centre or local ISM)
+    @return: wavelengths (A), A(lambda)/Av
+    @rtype: (ndarray,ndarray)
+    """
+    
+    if curve.lower() not in ['ism','gc']:
+        raise ValueError,'No Fitzpatrick2004/Chiar2006 curve available for %s.'\
+                         %(curve)
+                         
+    fn = 'fitzpatrick2004_chiar2006%s_extrapol.dat'%curve
+    source = os.path.join(basename,fn)
+    
+    #-- check Rv
+    assert(Rv==3.1)
+    wavelengths,alam_ak = ascii.read2array(source).T
+    
+    #-- Convert to AA
+    wavelengths *= 1e4
+    
+    #-- Convert from Ak normalization to Av normalization.
+    norm_reddening = model.synthetic_flux(wavelengths,alam_ak,\
+                                         ['JOHNSON.V','JOHNSON.K'])
+    ak_to_av = norm_reddening[1]/norm_reddening[0]
+    alam_aV = alam_ak * ak_to_av
+    
+    return wavelengths,alam_aV
 
 
 @memoized
