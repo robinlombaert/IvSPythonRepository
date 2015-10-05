@@ -75,3 +75,6 @@ Encountered errors and their solutions:
 numpy.distutils.fcompiler.CompilerNotFound: gnu95: f90 nor f77
 A: Install gfortran.
 
+2. Q: When I run "python config.py compile", I get the following error: 
+/bin/sh: f2py: command not found
+A: Install f2py. If you do have f2py installed, but under a different name for the executable (for instance, f2py-2.7), replace f2py with f2py-2.7 in config.py (search for cmd = ).
