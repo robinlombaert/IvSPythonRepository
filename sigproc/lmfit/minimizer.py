@@ -18,7 +18,7 @@ from numpy.linalg import LinAlgError
 
 from scipy.optimize import leastsq as scipy_leastsq
 from scipy.optimize import fmin as scipy_fmin
-from scipy.optimize import anneal as scipy_anneal
+#from scipy.optimize import anneal as scipy_anneal
 from scipy.optimize.lbfgsb import fmin_l_bfgs_b as scipy_lbfgsb
 
 # check for scipy.optimize.minimize
@@ -279,7 +279,7 @@ or set  leastsq_kws['maxfev']  to increase this maximum."""
         sakws.update(self.kws)
         sakws.update(kws)
         print("WARNING:  scipy anneal appears unusable!")
-        saout = scipy_anneal(self.penalty, self.vars, **sakws)
+        #saout = scipy_anneal(self.penalty, self.vars, **sakws)
         self.sa_out = saout
         return
 
