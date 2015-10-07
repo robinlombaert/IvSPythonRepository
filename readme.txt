@@ -1,7 +1,7 @@
 * Clone the git repository to create a local copy in an "ivs" folder. 
   
     $ cd python/
-    $ git clone https://github.com/robinlombaert/IvSPythonRepository.git ivs
+    $ git clone https://github.com/JorisDeRidder/IvSPythonRepository.git ivs
 
   This will clone all repository files in the ~/python/ivs folder. Be aware, however, that only the python scripts and the documentation are being cloned, not the (numerous and sometimes huge) datafiles that come along with it, containing, for example, limbdarkening coefficients.
     
