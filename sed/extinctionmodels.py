@@ -131,7 +131,7 @@ def findext(lng, lat, model='drimmel', distance=None, **kwargs):
 # Astrophysics (ISSN 0004-6361), vol. 258, no. 1, p. 104-111.)
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-def findext_arenou(ll, bb, distance=None, redlaw='cardelli1989', Rv=3.1, norm='Av'):
+def findext_arenou(ll, bb, distance=None, redlaw='cardelli1989', Rv=3.1, norm='Av',**kwargs):
   """
   Find the predicted V-band extinction (Av) according to the
   3D model for galactic extinction of Arenou et al, "Modelling
@@ -196,7 +196,7 @@ def findext_arenou(ll, bb, distance=None, redlaw='cardelli1989', Rv=3.1, norm='A
       av = alpha*rr0 + beta*rr0**2. + (distance-rr0)*gamma
   
   #-- Marshall is standard in Ak, but you can change this:
-  redwave, redflux = get_law(redlaw,Rv=Rv,norm=norm,photbands=['JOHNSON.V'])
+  redwave, redflux = get_law(redlaw,Rv=Rv,norm=norm,photbands=['JOHNSON.V'],**kwargs)
   
   return av/redflux[0]
 
@@ -775,7 +775,7 @@ def findext_marshall(ll, bb, distance=None, redlaw='cardelli1989', Rv=3.1, norm=
   
   #-- Marshall is standard in Ak, but you can change this:
   #redwave, redflux = get_law(redlaw,Rv=Rv,wave_units='micron',norm='Av', wave=array([0.54,2.22]))
-  redwave, redflux = get_law(redlaw,Rv=Rv,norm=norm,photbands=['JOHNSON.K'])
+  redwave, redflux = get_law(redlaw,Rv=Rv,norm=norm,photbands=['JOHNSON.K'],**kwargs)
   return ak/redflux[0]
 
 #}
@@ -1040,7 +1040,7 @@ def findext_drimmel(lng, lat, distance=None, rescaling=True,
   
   #-- Drimmel is standard in Av, but you can change this:
   #   In case of norm=Av, the conversion factor is just 1.
-  redwave, redflux = get_law(redlaw,Rv=Rv,norm=norm,photbands=['JOHNSON.V'])
+  redwave, redflux = get_law(redlaw,Rv=Rv,norm=norm,photbands=['JOHNSON.V'],**kwargs)
   
   return(out/redflux[0])
 
@@ -1463,7 +1463,7 @@ def findext_schlegel(ll, bb, distance = None, redlaw='cardelli1989', Rv=3.1, nor
   av = ebv*Rv
   
   #-- Marshall is standard in Ak, but you can change this:
-  redwave, redflux = get_law(redlaw,Rv=Rv,norm=norm,photbands=['JOHNSON.V'])
+  redwave, redflux = get_law(redlaw,Rv=Rv,norm=norm,photbands=['JOHNSON.V'],**kwargs)
   
   return av/redflux[0]
   
