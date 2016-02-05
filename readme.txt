@@ -1,3 +1,5 @@
+The IvS repository requires a working installation of Python 2.7 (not Python 3!)
+
 * Clone the git repository to create a local copy in an "ivs" folder. 
   
     $ cd python/
